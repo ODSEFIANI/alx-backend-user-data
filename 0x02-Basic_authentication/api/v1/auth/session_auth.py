@@ -25,8 +25,3 @@ class SessionAuth(Auth):
 
         # Placeholder: You might want to return the generated session_id
         return self.user_id_by_session_id
-
-
-
-
-        
