@@ -10,7 +10,7 @@ from uuid import uuid4
 
 
 class SessionAuth(Auth):
-    """Session authentication class
+    """Session authenticationclass
     """
     user_id_by_session_id = {}
 
