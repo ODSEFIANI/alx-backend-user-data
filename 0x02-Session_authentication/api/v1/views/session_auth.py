@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """ Module auth view
 """
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, make_response
 from api.v1.views import app_views
 from models.user import User
 from api.v1.app import auth
