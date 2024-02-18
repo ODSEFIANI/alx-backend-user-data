@@ -7,12 +7,11 @@ from api.v1.auth.session_auth import SessionAuth
 from datetime import datetime, timedelta
 import os
 
+
 class SessionExpAuth(SessionAuth):
     """Session authentication class with expiration"""
 
     def __init__(self):
-        """init
-        """
         super().__init__()
         # Assign session_duration from the environment variable
         session_duration = os.getenv('SESSION_DURATION')
@@ -22,9 +21,12 @@ class SessionExpAuth(SessionAuth):
             self.session_duration = 0
 
     def create_session(self, user_id=None):
-        """create a session
         """
-        # Create a Session ID using the parent class method
+        Create a Session ID by calling the parent class method.
+
+        :param user_id: User ID for which the session is created.
+        :return: Session ID created or None if it fails.
+        """
         session_id = super().create_session(user_id)
 
         if session_id:
@@ -40,7 +42,11 @@ class SessionExpAuth(SessionAuth):
         return session_id
 
     def user_id_for_session_id(self, session_id=None):
-        """user id
+        """
+        Retrieve the User ID for a given Session ID.
+
+        :param session_id: Session ID to look up.
+        :return: User ID if session is valid, otherwise None.
         """
         if session_id is None:
             return None
