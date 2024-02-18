@@ -7,6 +7,7 @@ from models.user import User
 from api.v1.app import auth
 import os
 
+
 @app_views.route('/auth_session/login', methods=['POST'], strict_slashes=False)
 def session_login():
     """verify the user login
@@ -21,9 +22,8 @@ def session_login():
     if not password:
         return jsonify({"error": "password missing"}), 400
 
-    # Retrieve the User instance based on the email
     users = User.search({"email": email})
-    
+
     if not users:
         return jsonify({"error": "no user found for this email"}), 404
 
@@ -45,7 +45,9 @@ def session_login():
     # If no user with matching credentials is found
     return jsonify({"error": "wrong password"}), 401
 
-@app_views.route('/auth_session/logout', methods=['DELETE'], strict_slashes=False)
+
+@app_views.route('/auth_session/logout', methods=['DELETE'],
+                 strict_slashes=False)
 def session_logout():
     # Use auth.destroy_session(request) to delete the session
     if not auth.destroy_session(request):
