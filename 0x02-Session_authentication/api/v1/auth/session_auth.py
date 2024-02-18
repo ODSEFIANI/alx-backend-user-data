@@ -4,7 +4,7 @@ Session clss module
 """
 import base64
 from typing import TypeVar
-from .auth import Auth
+from api.v1.app import Auth
 from models.user import User
 from models.user import User
 from uuid import uuid4
