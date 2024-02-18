@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """ Module auth view
 """
-from flask import Flask, request, jsonify, make_response
+from flask import Flask, request, jsonify, make_response, abort
 from api.v1.views import app_views
 from models.user import User
 from api.v1.app import auth
@@ -44,3 +44,12 @@ def session_login():
 
     # If no user with matching credentials is found
     return jsonify({"error": "wrong password"}), 401
+
+@app_views.route('/auth_session/logout', methods=['DELETE'], strict_slashes=False)
+def session_logout():
+    # Use auth.destroy_session(request) to delete the session
+    if not auth.destroy_session(request):
+        abort(404)
+
+    # Return an empty JSON dictionary with status code 200
+    return jsonify({}), 200
