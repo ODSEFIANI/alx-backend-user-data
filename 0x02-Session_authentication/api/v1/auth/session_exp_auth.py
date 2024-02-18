@@ -2,9 +2,11 @@
 """
 how long the cookies last module
 """
-import os
 from api.v1.auth.session_auth import SessionAuth
-from datetime import datetime, timedelta
+from datetime import (
+    datetime,
+    timedelta
+)
 import os
 
 
@@ -16,7 +18,8 @@ class SessionExpAuth(SessionAuth):
         # Assign session_duration from the environment variable
         session_duration = os.getenv('SESSION_DURATION')
         try:
-            self.session_duration = int(session_duration) if session_duration else 0
+            self.session_duration = int(
+                session_duration) if session_duration else 0
         except ValueError:
             self.session_duration = 0
 
@@ -63,7 +66,9 @@ class SessionExpAuth(SessionAuth):
 
         created_at = session_dict.get("created_at")
 
-        if created_at is None or (created_at + timedelta(seconds=self.session_duration)) < datetime.now():
+        if created_at is None or (
+            created_at + timedelta(
+                seconds=self.session_duration)) < datetime.now():
             return None
 
         return user_id
