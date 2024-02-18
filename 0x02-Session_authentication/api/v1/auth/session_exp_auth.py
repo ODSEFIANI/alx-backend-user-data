@@ -11,6 +11,8 @@ class SessionExpAuth(SessionAuth):
     """Session authentication class with expiration"""
 
     def __init__(self):
+        """init
+        """
         super().__init__()
         # Assign session_duration from the environment variable
         session_duration = os.getenv('SESSION_DURATION')
@@ -20,6 +22,8 @@ class SessionExpAuth(SessionAuth):
             self.session_duration = 0
 
     def create_session(self, user_id=None):
+        """create a session
+        """
         # Create a Session ID using the parent class method
         session_id = super().create_session(user_id)
 
@@ -36,6 +40,8 @@ class SessionExpAuth(SessionAuth):
         return session_id
 
     def user_id_for_session_id(self, session_id=None):
+        """user id
+        """
         if session_id is None:
             return None
 
