@@ -27,10 +27,13 @@ class SessionExpAuth(SessionAuth):
 
     def create_session(self, user_id=None):
         """
-        Create a Session ID by calling the parent class method.
+        Create a Session ID for a given user ID.
 
-        :param user_id: User ID for which the session is created.
-        :return: Session ID created or None if it fails.
+        Args:
+            user_id (str): User ID for which the session is created.
+
+        Returns:
+            str: Session ID created or None if it fails.
         """
         session_id = super().create_session(user_id)
 
@@ -50,8 +53,11 @@ class SessionExpAuth(SessionAuth):
         """
         Retrieve the User ID for a given Session ID.
 
-        :param session_id: Session ID to look up.
-        :return: User ID if session is valid, otherwise None.
+        Args:
+            session_id (str): Session ID to look up.
+
+        Returns:
+            str: User ID if session is valid, otherwise None.
         """
         if session_id is None:
             return None
