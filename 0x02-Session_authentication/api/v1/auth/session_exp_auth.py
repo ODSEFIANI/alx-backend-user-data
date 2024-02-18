@@ -14,6 +14,8 @@ class SessionExpAuth(SessionAuth):
     """Session authentication class with expiration"""
 
     def __init__(self):
+        """init
+        """
         super().__init__()
         # Assign session_duration from the environment variable
         session_duration = os.getenv('SESSION_DURATION')
