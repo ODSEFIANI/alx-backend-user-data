@@ -26,7 +26,7 @@ class SessionAuth(Auth):
         self.user_id_by_session_id[session_id] = user_id
 
         # Placeholder: You might want to return the generated session_id
-        return self.user_id_by_session_id
+        return session_id
 
     def user_id_for_session_id(self, session_id: str = None) -> str:
         """fet the user id from the dictionary of given session id
