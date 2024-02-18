@@ -11,7 +11,8 @@ import os
 
 
 class SessionExpAuth(SessionAuth):
-    """Session authentication class with expiration"""
+    """Session authentication class with expiration
+    """
 
     def __init__(self):
         """init
