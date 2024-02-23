@@ -48,6 +48,7 @@ def logout():
     AUTH.destroy_session(user.id)
     return redirect("/")
 
+
 @app.route("/profile")
 def profile():
     """fetch the user_profile"""
@@ -56,6 +57,7 @@ def profile():
     if the_user is None:
         abort(403)
     return jsonify({"email": the_user.email})
+
 
 @app.route("/reset_password", methods=["POST"])
 def get_reset_password_token():
@@ -67,6 +69,18 @@ def get_reset_password_token():
         abort(403)
     return jsonify({"email": email, "reset_token": reset_token})
 
+
+@app.route("/reset_password", methods=["PUT"])
+def update_password():
+    """verify the reset token before changing the password"""
+    email = request.form.get("email")
+    token = request.form.get("reset_token")
+    new_password = request.form.get("new_password")
+    try:
+        AUTH.update_password(token, new_password)
+    except ValueError:
+        abort(403)
+    return jsonify({"email": email, "message": "Password updated"})
 
 
 if __name__ == "__main__":
