@@ -48,3 +48,16 @@ def logout():
     AUTH.destroy_session(user.id)
     return redirect("/")
 
+@app.route("/profile")
+def profile():
+    """fetch the user_profile"""
+    session_id = request.cookies.get("session_id")
+    the_user = AUTH.get_user_from_session_id(session_id)
+    if the_user is None:
+        abort(403)
+    return jsonify({"email": the_user.email})
+
+
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port="5000")
